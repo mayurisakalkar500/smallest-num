@@ -1,0 +1,49 @@
+/*The input should be in the form of N and K where N and K are integers. The output should contain the good solution.
+The good solution means after deleting zero or more numbers the smallest integers value should come.
+
+EX:- N= 7195 and K= 11
+hence the output should be 15 as it is the least integer number to K i.e 11, after deleting 7 and 9.
+
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    set<int> s;
+    cout<<"n  k :-";
+    int n,k,m;
+    cin>>n>>k;
+    while(n!=0)
+    {
+        m=n%10;
+        s.insert(m);
+        n=n/10;
+    }
+    
+     int ans=0,flag=0;
+    for(auto it=s.begin();it!=s.end();it++)
+    {
+       for(auto ty=s.begin();ty!=s.end();ty++)
+       {
+           if((*it)!=(*ty))
+           {
+              ans=(*it) *10+ (*ty);
+              
+              if(ans>k)
+              {
+                    cout<<ans<<endl;
+                    flag=1;
+                    break;
+              }
+           }
+       }
+       if (flag==1)
+       {
+           break;
+       }
+      
+    }
+    return 0;
+}
